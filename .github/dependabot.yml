@@ -1,2 +1,6 @@
 # Documentation for all configuration options:
-# https://help.gi
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosyst
