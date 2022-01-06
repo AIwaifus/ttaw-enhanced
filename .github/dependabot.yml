@@ -3,4 +3,7 @@
 
 version: 2
 updates:
-  - package-ecosyst
+  - package-ecosystem: "cargo"
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "daily"
