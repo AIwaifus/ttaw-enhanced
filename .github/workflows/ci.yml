@@ -1,0 +1,48 @@
+
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v1
+
+      - name: install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: install rustfmt
+        run: rustup component add rustfmt
+
+      - name: rustfmt check
+        run: cargo fmt --all -- --check
+
+  test-macos-latest-stable:
+    name: macos-latest test suite stable
+    needs: [format]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - name: cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+
+  test-macos-latest-nightly:
+    name: macos-latest test suite nightly
+    needs: [format]
