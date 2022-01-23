@@ -46,3 +46,84 @@ jobs:
   test-macos-latest-nightly:
     name: macos-latest test suite nightly
     needs: [format]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+      - name: cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+
+  test-windows-latest-stable:
+    name: windows-latest test suite stable
+    needs: [format]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - name: cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+
+  test-windows-latest-nightly:
+    name: windows-latest test suite nightly
+    needs: [format]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+      - name: cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+
+  test-with-coverage:
+    name: ubuntu-latest test suite with coverage
+    needs: [format]
+    runs-on: ubuntu-latest
+    container:
+      image:  xd009642/tarpaulin:develop-nightly
+      options: --security-opt seccomp=unconfined    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Generate code coverage
+        run: |
+          ls
+          cargo +nightly tarpaulin \
+          --verbose --all-features --workspace --timeout 120 \
+          --out Lcov --output-dir ./coverage
+      - name: Upload to Coveralls   
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  test-ubuntu-latest-nightly:
+    name: ubuntu-latest test suite nightly
+    needs: [format]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+      - name: cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
