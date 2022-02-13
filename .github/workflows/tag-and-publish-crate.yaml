@@ -15,3 +15,6 @@ on:
 jobs:
   publish:
     runs-on: macos-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or change
