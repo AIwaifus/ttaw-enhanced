@@ -42,4 +42,6 @@ jobs:
       - name: bump version
         run: cargo bump -g ${{ inputs.tag-increment }}
       - name: push
-        run: git push
+        run: git push && git push --tags
+      - name: cargo publish
+        run: cargo publish --token ${{ secrets.CRATES_TOKEN }}
