@@ -16,4 +16,5 @@ The order of operations for tagging and publishing in the action is this
 
 ## Troubleshooting
 
-- if step 1 of execution fai
+- if step 1 of execution fails, after addressing the error, you run the action again
+- if step 2 of execution fails, after addressing the error, you run the action
