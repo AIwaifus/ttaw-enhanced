@@ -10,4 +10,10 @@
 The order of operations for tagging and publishing in the action is this
 
 1. run all checks, i.e. fmt, clippy, tests, etc
-1. push cha
+1. push change / update to the Cargo.toml
+1. push the new tag to the repo
+1. publish the new version to crates.io
+
+## Troubleshooting
+
+- if step 1 of execution fai
