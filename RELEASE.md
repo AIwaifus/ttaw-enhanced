@@ -7,4 +7,7 @@
 
 ## Execution
 
-The order of operati
+The order of operations for tagging and publishing in the action is this
+
+1. run all checks, i.e. fmt, clippy, tests, etc
+1. push cha
