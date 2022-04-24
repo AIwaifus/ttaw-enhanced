@@ -17,4 +17,5 @@ The order of operations for tagging and publishing in the action is this
 ## Troubleshooting
 
 - if step 1 of execution fails, after addressing the error, you run the action again
-- if step 2 of execution fails, after addressing the error, you run the action
+- if step 2 of execution fails, after addressing the error, you run the action again
+- if step 3 of execution fails (the Cargo.toml version was incremented), after addressing the error, you s
