@@ -19,4 +19,4 @@ The order of operations for tagging and publishing in the action is this
 - if step 1 of execution fails, after addressing the error, you run the action again
 - if step 2 of execution fails, after addressing the error, you run the action again
 - if step 3 of execution fails (the Cargo.toml version was incremented), after addressing the error, you should manually tag (github's ux or the cli) and manually publish the crate with `cargo publish`
-- if step 4 of execution fails (the Cargo.toml version was incremented and there's a new corresponding tag), after addressing the error, you should manuall
+- if step 4 of execution fails (the Cargo.toml version was incremented and there's a new corresponding tag), after addressing the error, you should manually publish the crate  with `cargo publish`
