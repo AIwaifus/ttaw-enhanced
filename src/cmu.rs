@@ -13,4 +13,6 @@ pub struct CmuDict {
 }
 
 impl CmuDict {
-    /// Initialize the CmuDict with a pa
+    /// Initialize the CmuDict with a path to the existing serialized CMU dictionary
+    /// or a directoy containing it. If the dictionary doesn't exisit, it will be
+    /
