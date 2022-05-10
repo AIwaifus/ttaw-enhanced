@@ -8,4 +8,9 @@ use std::fs;
 use std::io::{self, BufRead};
 use std::path::Path;
 
-pub st
+pub struct CmuDict {
+    dict: HashMap<String, Vec<Vec<String>>>,
+}
+
+impl CmuDict {
+    /// Initialize the CmuDict with a pa
