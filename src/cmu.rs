@@ -15,4 +15,6 @@ pub struct CmuDict {
 impl CmuDict {
     /// Initialize the CmuDict with a path to the existing serialized CMU dictionary
     /// or a directoy containing it. If the dictionary doesn't exisit, it will be
-    /
+    /// downloaded and serialized at the location specified by the path parameter.
+    pub fn new(path: &str) -> Result<CmuDict, Error> {
+       
