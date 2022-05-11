@@ -17,4 +17,10 @@ impl CmuDict {
     /// or a directoy containing it. If the dictionary doesn't exisit, it will be
     /// downloaded and serialized at the location specified by the path parameter.
     pub fn new(path: &str) -> Result<CmuDict, Error> {
-       
+        match from_json_file(Path::new(path)) {
+            Ok(d) => Ok(CmuDict { dict: d }),
+            Err(e) => Err(e),
+        }
+    }
+
+  
