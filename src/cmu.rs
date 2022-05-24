@@ -23,4 +23,8 @@ impl CmuDict {
         }
     }
 
-  
+    /// CMUdict phonetic encoding.
+    ///
+    /// ```rust
+    /// extern crate ttaw;
+    /// use ttaw::cmu::CmuDict
