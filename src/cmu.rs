@@ -27,4 +27,7 @@ impl CmuDict {
     ///
     /// ```rust
     /// extern crate ttaw;
-    /// use ttaw::cmu::CmuDict
+    /// use ttaw::cmu::CmuDict;
+    /// let cmudict = CmuDict::new("cmudict.json").unwrap();
+    /// assert_eq!(
+    ///     cmudict.encoding(
