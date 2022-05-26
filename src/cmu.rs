@@ -30,4 +30,8 @@ impl CmuDict {
     /// use ttaw::cmu::CmuDict;
     /// let cmudict = CmuDict::new("cmudict.json").unwrap();
     /// assert_eq!(
-    ///     cmudict.encoding(
+    ///     cmudict.encoding("permeability"),
+    ///     Ok(Some(vec![vec![
+    ///         "P".to_string(),
+    ///         "ER0".to_string(),
+    ///         "
