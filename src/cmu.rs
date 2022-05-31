@@ -47,4 +47,7 @@ impl CmuDict {
     /// );
     ///
     /// assert_eq!(
-    ///     cmu
+    ///     cmudict.encoding("unearthed"),
+    ///     Ok(Some(vec![vec![
+    ///         "AH0".to_string(),
+    ///         "N".to_
