@@ -50,4 +50,8 @@ impl CmuDict {
     ///     cmudict.encoding("unearthed"),
     ///     Ok(Some(vec![vec![
     ///         "AH0".to_string(),
-    ///         "N".to_
+    ///         "N".to_string(),
+    ///         "ER1".to_string(),
+    ///         "TH".to_string(),
+    ///         "T".to_string()
+    ///    
