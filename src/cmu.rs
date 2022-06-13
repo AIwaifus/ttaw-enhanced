@@ -54,4 +54,7 @@ impl CmuDict {
     ///         "ER1".to_string(),
     ///         "TH".to_string(),
     ///         "T".to_string()
-    ///    
+    ///     ]]))
+    /// );
+    /// ```
+    pub fn encoding(&self, w: &str) -> Result<Option<Vec<Vec<String>>>, Error> {
