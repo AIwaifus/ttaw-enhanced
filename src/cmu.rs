@@ -63,3 +63,7 @@ impl CmuDict {
 
     /// Use CMUdict phonetic encoding to determine if two words rhyme.
     ///
+    /// ```rust
+    /// extern crate ttaw;
+    /// use ttaw::cmu::CmuDict;
+    /// let cmudict = CmuDict::new("cmudict.json").unwrap();
