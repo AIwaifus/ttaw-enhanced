@@ -58,3 +58,8 @@ impl CmuDict {
     /// );
     /// ```
     pub fn encoding(&self, w: &str) -> Result<Option<Vec<Vec<String>>>, Error> {
+        Ok(self.dict.get(w).map(|v| v.to_vec()))
+    }
+
+    /// Use CMUdict phonetic encoding to determine if two words rhyme.
+    ///
