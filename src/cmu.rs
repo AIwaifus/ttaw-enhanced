@@ -69,4 +69,8 @@ impl CmuDict {
     /// let cmudict = CmuDict::new("cmudict.json").unwrap();
     /// // Does rhyme
     /// assert!(cmudict.rhyme("hissed", "mist").unwrap());
-    /// assert!(cmudict.rhyme("tryst", "wrist").unwra
+    /// assert!(cmudict.rhyme("tryst", "wrist").unwrap());
+    ///
+    /// // Does not rhyme
+    /// assert!(!cmudict.rhyme("red", "Edmund").unwrap());
+    /// assert!(!
