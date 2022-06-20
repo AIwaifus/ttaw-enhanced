@@ -76,4 +76,5 @@ impl CmuDict {
     /// assert!(!cmudict.rhyme("comfy", "chair").unwrap());
     /// ```
     pub fn rhyme(&self, a: &str, b: &str) -> Result<bool, Error> {
-   
+        if let (Some(phones_a), Some(phones_b)) = (
+            self.dict.get(a.to_string().to_lowercase().tr
