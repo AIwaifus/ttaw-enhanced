@@ -73,4 +73,7 @@ impl CmuDict {
     ///
     /// // Does not rhyme
     /// assert!(!cmudict.rhyme("red", "Edmund").unwrap());
-    /// assert!(!
+    /// assert!(!cmudict.rhyme("comfy", "chair").unwrap());
+    /// ```
+    pub fn rhyme(&self, a: &str, b: &str) -> Result<bool, Error> {
+   
