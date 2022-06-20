@@ -91,4 +91,6 @@ impl CmuDict {
     /// ```rust
     /// extern crate ttaw;
     /// use ttaw::cmu::CmuDict;
-    /// let cmudict = CmuDict::
+    /// let cmudict = CmuDict::new("cmudict.json").unwrap();
+    // // Does alliterate
+    /// assert!(cmudict.alliteration("bouncing", "bears").unwrap())
