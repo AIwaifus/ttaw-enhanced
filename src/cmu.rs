@@ -77,4 +77,7 @@ impl CmuDict {
     /// ```
     pub fn rhyme(&self, a: &str, b: &str) -> Result<bool, Error> {
         if let (Some(phones_a), Some(phones_b)) = (
-            self.dict.get(a.to_string().to_lowercase().tr
+            self.dict.get(a.to_string().to_lowercase().trim()),
+            self.dict.get(b.to_string().to_lowercase().trim()),
+        ) {
+            return Ok(eval_rhyme(phones_a, 
