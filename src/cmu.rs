@@ -86,4 +86,9 @@ impl CmuDict {
         Ok(false)
     }
 
-    /// Use CMUdict phonetic encoding to determine if two words al
+    /// Use CMUdict phonetic encoding to determine if two words alliterate.
+    ///
+    /// ```rust
+    /// extern crate ttaw;
+    /// use ttaw::cmu::CmuDict;
+    /// let cmudict = CmuDict::
