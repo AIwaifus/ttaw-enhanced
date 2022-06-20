@@ -93,4 +93,8 @@ impl CmuDict {
     /// use ttaw::cmu::CmuDict;
     /// let cmudict = CmuDict::new("cmudict.json").unwrap();
     // // Does alliterate
-    /// assert!(cmudict.alliteration("bouncing", "bears").unwrap())
+    /// assert!(cmudict.alliteration("bouncing", "bears").unwrap());
+    /// assert!(cmudict.alliteration("snappy", "snails").unwrap());
+    ///
+    /// // Does not alliterate
+    /// assert!(!cmudi
