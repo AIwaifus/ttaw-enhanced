@@ -67,3 +67,6 @@ impl CmuDict {
     /// extern crate ttaw;
     /// use ttaw::cmu::CmuDict;
     /// let cmudict = CmuDict::new("cmudict.json").unwrap();
+    /// // Does rhyme
+    /// assert!(cmudict.rhyme("hissed", "mist").unwrap());
+    /// assert!(cmudict.rhyme("tryst", "wrist").unwra
