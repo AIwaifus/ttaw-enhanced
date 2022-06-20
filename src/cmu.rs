@@ -80,4 +80,10 @@ impl CmuDict {
             self.dict.get(a.to_string().to_lowercase().trim()),
             self.dict.get(b.to_string().to_lowercase().trim()),
         ) {
-            return Ok(eval_rhyme(phones_a, 
+            return Ok(eval_rhyme(phones_a, phones_b));
+        }
+
+        Ok(false)
+    }
+
+    /// Use CMUdict phonetic encoding to determine if two words al
