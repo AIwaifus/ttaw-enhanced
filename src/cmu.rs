@@ -101,4 +101,8 @@ impl CmuDict {
     /// assert!(!cmudict.alliteration("lazy", "dog").unwrap());
     /// ```
     pub fn alliteration(&self, a: &str, b: &str) -> Result<bool, Error> {
-        if Word::parse(Rule::vowel_first, a.get(..1).unwrap_or_
+        if Word::parse(Rule::vowel_first, a.get(..1).unwrap_or_default()).is_ok() {
+            return Ok(false);
+        }
+
+        if Word::parse(Rule::vowel_first, b.get(..1).unwr
