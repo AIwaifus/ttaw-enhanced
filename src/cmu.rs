@@ -97,4 +97,7 @@ impl CmuDict {
     /// assert!(cmudict.alliteration("snappy", "snails").unwrap());
     ///
     /// // Does not alliterate
-    /// assert!(!cmudi
+    /// assert!(!cmudict.alliteration("brown", "fox").unwrap());
+    /// assert!(!cmudict.alliteration("lazy", "dog").unwrap());
+    /// ```
+    pub fn al
