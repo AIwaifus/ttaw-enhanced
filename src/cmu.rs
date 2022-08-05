@@ -105,4 +105,8 @@ impl CmuDict {
             return Ok(false);
         }
 
-        if Word::parse(Rule::vowel_first, b.get(..1).unwr
+        if Word::parse(Rule::vowel_first, b.get(..1).unwrap_or_default()).is_ok() {
+            return Ok(false);
+        }
+
+        if let (Some(phones_a), Some(phones_b)) =
