@@ -120,4 +120,6 @@ impl CmuDict {
     }
 }
 
-fn rhyming_pa
+fn rhyming_part(phones: &[String]) -> Option<Vec<String>> {
+    for (i, s) in phones.iter().rev().enumerate() {
+        if let Some(num) = s.chars().col
