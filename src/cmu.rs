@@ -111,4 +111,13 @@ impl CmuDict {
 
         if let (Some(phones_a), Some(phones_b)) = (
             self.dict.get(a.to_string().to_lowercase().trim()),
-            self.dict.get(b.to_string().to_lowercase().tr
+            self.dict.get(b.to_string().to_lowercase().trim()),
+        ) {
+            return Ok(eval_alliteration(phones_a, phones_b));
+        }
+
+        Ok(false)
+    }
+}
+
+fn rhyming_pa
