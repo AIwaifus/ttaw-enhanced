@@ -122,4 +122,6 @@ impl CmuDict {
 
 fn rhyming_part(phones: &[String]) -> Option<Vec<String>> {
     for (i, s) in phones.iter().rev().enumerate() {
-        if let Some(num) = s.chars().col
+        if let Some(num) = s.chars().collect::<Vec<char>>().last() {
+            if *num == '1' || *num == '2' {
+                return phone
