@@ -124,4 +124,12 @@ fn rhyming_part(phones: &[String]) -> Option<Vec<String>> {
     for (i, s) in phones.iter().rev().enumerate() {
         if let Some(num) = s.chars().collect::<Vec<char>>().last() {
             if *num == '1' || *num == '2' {
-                return phone
+                return phones.get(phones.len() - 1 - i..).map(|v| v.to_vec());
+            }
+        }
+    }
+
+    None
+}
+
+fn eval_rhyme(phones_a: &[Ve
