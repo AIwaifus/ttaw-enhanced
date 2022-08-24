@@ -144,4 +144,7 @@ fn eval_rhyme(phones_a: &[Vec<String>], phones_b: &[Vec<String>]) -> bool {
     false
 }
 
-fn eval_alliteration(phones_a: &[V
+fn eval_alliteration(phones_a: &[Vec<String>], phones_b: &[Vec<String>]) -> bool {
+    for a in phones_a {
+        for b in phones_b {
+            if let 
