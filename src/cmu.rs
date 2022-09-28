@@ -147,4 +147,11 @@ fn eval_rhyme(phones_a: &[Vec<String>], phones_b: &[Vec<String>]) -> bool {
 fn eval_alliteration(phones_a: &[Vec<String>], phones_b: &[Vec<String>]) -> bool {
     for a in phones_a {
         for b in phones_b {
-            if let 
+            if let (Some(a), Some(b)) = (a.first(), b.first()) {
+                return a == b;
+            }
+        }
+    }
+
+    false
+}
