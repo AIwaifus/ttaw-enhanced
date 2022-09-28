@@ -155,3 +155,7 @@ fn eval_alliteration(phones_a: &[Vec<String>], phones_b: &[Vec<String>]) -> bool
 
     false
 }
+
+fn from_json_file(path: &Path) -> Result<HashMap<String, Vec<Vec<String>>>, Error> {
+    if !path.exists() {
+        // rege
