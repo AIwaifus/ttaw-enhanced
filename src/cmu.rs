@@ -161,4 +161,10 @@ fn from_json_file(path: &Path) -> Result<HashMap<String, Vec<Vec<String>>>, Erro
         // regenerate if the file isn't there
         if path.is_dir() {
             download_and_serialize(&path.join("cmudict.json"))?;
-  
+        } else {
+            download_and_serialize(path)?;
+        }
+    }
+
+    let dict_json = fs::read_to_string(path)?;
+    let dict:
