@@ -171,4 +171,6 @@ fn from_json_file(path: &Path) -> Result<HashMap<String, Vec<Vec<String>>>, Erro
     Ok(dict)
 }
 
-pub fn download_and_serialize(path: &Path) -
+pub fn download_and_serialize(path: &Path) -> Result<(), Error> {
+    let dict_string = reqwest::blocking::get(
+        "https://raw.githubusercontent.com/cmusp
