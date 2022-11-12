@@ -167,4 +167,8 @@ fn from_json_file(path: &Path) -> Result<HashMap<String, Vec<Vec<String>>>, Erro
     }
 
     let dict_json = fs::read_to_string(path)?;
-    let dict:
+    let dict: HashMap<String, Vec<Vec<String>>> = serde_json::from_str(&dict_json)?;
+    Ok(dict)
+}
+
+pub fn download_and_serialize(path: &Path) -
