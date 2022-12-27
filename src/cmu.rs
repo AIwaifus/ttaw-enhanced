@@ -178,4 +178,8 @@ pub fn download_and_serialize(path: &Path) -> Result<(), Error> {
     .text()?;
 
     let cursor = io::Cursor::new(dict_string);
-    let lines = cursor.lines().c
+    let lines = cursor.lines().collect::<Result<Vec<_>, _>>()?;
+
+    let mut dict: HashMap<String, Vec<Vec<String>>> = HashMap::new();
+
+    for line in lines {
