@@ -188,4 +188,6 @@ pub fn download_and_serialize(path: &Path) -> Result<(), Error> {
             .map(|s| s.to_string())
             .collect::<Vec<String>>();
 
-        if let Some(
+        if let Some((h, t)) = entry.split_first() {
+            if let Some(key) = h.split('(').collect::<Vec<&str>>().first() {
+        
