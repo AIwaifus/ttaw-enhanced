@@ -183,3 +183,9 @@ pub fn download_and_serialize(path: &Path) -> Result<(), Error> {
     let mut dict: HashMap<String, Vec<Vec<String>>> = HashMap::new();
 
     for line in lines {
+        let entry = line
+            .split_whitespace()
+            .map(|s| s.to_string())
+            .collect::<Vec<String>>();
+
+        if let Some(
