@@ -190,4 +190,7 @@ pub fn download_and_serialize(path: &Path) -> Result<(), Error> {
 
         if let Some((h, t)) = entry.split_first() {
             if let Some(key) = h.split('(').collect::<Vec<&str>>().first() {
-        
+                match dict.get_mut(*key) {
+                    Some(v) => {
+                        v.push(t.to_vec());
+                  
