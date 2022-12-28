@@ -193,4 +193,8 @@ pub fn download_and_serialize(path: &Path) -> Result<(), Error> {
                 match dict.get_mut(*key) {
                     Some(v) => {
                         v.push(t.to_vec());
-                  
+                    }
+                    None => {
+                        dict.insert(key.to_string(), vec![t.to_vec()]);
+                    }
+  
