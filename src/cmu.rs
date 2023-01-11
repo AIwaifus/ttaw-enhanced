@@ -197,4 +197,11 @@ pub fn download_and_serialize(path: &Path) -> Result<(), Error> {
                     None => {
                         dict.insert(key.to_string(), vec![t.to_vec()]);
                     }
-  
+                }
+            }
+        }
+    }
+
+    let serialized = serde_json::to_string(&dict)?;
+    fs::write(path, serialized)?;
+   
