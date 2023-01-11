@@ -204,4 +204,13 @@ pub fn download_and_serialize(path: &Path) -> Result<(), Error> {
 
     let serialized = serde_json::to_string(&dict)?;
     fs::write(path, serialized)?;
-   
+    Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_download_and_serialze() {
+        let dir = tempfile:
