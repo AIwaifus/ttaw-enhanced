@@ -216,4 +216,10 @@ mod tests {
         let dir = tempfile::tempdir().unwrap();
         let fpath = dir.path().join("serialized");
         let dict = download_and_serialize(&fpath);
-   
+        assert!(dict.is_ok());
+    }
+
+    #[test]
+    fn test_from_json_file() {
+        let dir = tempfile::tempdir().unwrap();
+ 
