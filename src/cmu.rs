@@ -213,4 +213,7 @@ mod tests {
 
     #[test]
     fn test_download_and_serialze() {
-        let dir = tempfile:
+        let dir = tempfile::tempdir().unwrap();
+        let fpath = dir.path().join("serialized");
+        let dict = download_and_serialize(&fpath);
+   
