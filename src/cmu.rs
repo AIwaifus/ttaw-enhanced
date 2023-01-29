@@ -224,4 +224,6 @@ mod tests {
         let dir = tempfile::tempdir().unwrap();
         let fpath = dir.path().join("serialized");
         let dict = from_json_file(&fpath);
-        assert!
+        assert!(dict.is_ok());
+    }
+}
