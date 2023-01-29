@@ -222,4 +222,6 @@ mod tests {
     #[test]
     fn test_from_json_file() {
         let dir = tempfile::tempdir().unwrap();
- 
+        let fpath = dir.path().join("serialized");
+        let dict = from_json_file(&fpath);
+        assert!
