@@ -50,3 +50,19 @@ any_not_gfkoj = _{ !gfkoj ~ ANY}
 
 j_for_j_exception = { SOI ~ any_not_jfje* ~ jfje ~ ANY* ~ EOI }
 jfje = _{ "L" | "T" | "K" | "S" | "N" | "M" | "B" | "Z" }
+any_not_jfje = _{ !jfje ~ ANY }
+
+
+alle = { SOI ~ any_not_asos* ~ asos ~ ANY* ~ EOI }
+asos = _{ "AS" | "OS" }
+any_not_asos = _{ !asos ~ ANY }
+
+h_for_s = { SOI ~ any_not_hfs* ~ hfs ~ ANY* ~ EOI }
+hfs = _{ "EIM" | "OEK" | "OLM" | "OLZ" }
+any_not_hfs = _{ !hfs ~ ANY }
+
+dutch_sch = { SOI ~ any_not_ds* ~ ds ~ ANY* ~ EOI }
+ds = _{ ("E" ~ ("D" | "M" | "N" | "R")) | "UY" | "OO" }
+any_not_ds = _{ !ds ~ ANY }
+
+whitespace = _{ " " | "\t" }
