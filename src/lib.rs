@@ -8,4 +8,9 @@ extern crate pest;
 /// assert_eq!(
 ///     cmudict.encoding("permeability"),
 ///     Ok(Some(vec![vec![
-///         "P".to_stri
+///         "P".to_string(),
+///         "ER0".to_string(),
+///         "M".to_string(),
+///         "IY2".to_string(),
+///         "AH0".to_string(),
+/// 
