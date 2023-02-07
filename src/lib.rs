@@ -13,4 +13,8 @@ extern crate pest;
 ///         "M".to_string(),
 ///         "IY2".to_string(),
 ///         "AH0".to_string(),
-/// 
+///         "B".to_string(),
+///         "IH1".to_string(),
+///         "L".to_string(),
+///         "IH0".to_string(),
+/
