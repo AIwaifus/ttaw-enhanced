@@ -27,4 +27,13 @@ extern crate pest;
 ///         "AH0".to_string(),
 ///         "N".to_string(),
 ///         "ER1".to_string(),
-///        
+///         "TH".to_string(),
+///         "T".to_string()
+///     ]]))
+/// );
+///
+/// ```
+///
+/// ## Double Metaphone
+/// ```rust
+/// extern crate
