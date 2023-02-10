@@ -22,4 +22,9 @@ extern crate pest;
 ///     ]]))
 /// );
 /// assert_eq!(
-///     cmudict.encoding("unearthe
+///     cmudict.encoding("unearthed"),
+///     Ok(Some(vec![vec![
+///         "AH0".to_string(),
+///         "N".to_string(),
+///         "ER1".to_string(),
+///        
