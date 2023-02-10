@@ -17,4 +17,9 @@ extern crate pest;
 ///         "IH1".to_string(),
 ///         "L".to_string(),
 ///         "IH0".to_string(),
-/
+///         "T".to_string(),
+///         "IY0".to_string()
+///     ]]))
+/// );
+/// assert_eq!(
+///     cmudict.encoding("unearthe
