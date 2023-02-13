@@ -36,4 +36,7 @@ extern crate pest;
 ///
 /// ## Double Metaphone
 /// ```rust
-/// extern crate
+/// extern crate ttaw;
+/// use ttaw;
+///     assert_eq!(ttaw::metaphone::encoding("Arnow").primary, "ARN");
+///  
