@@ -39,4 +39,6 @@ extern crate pest;
 /// extern crate ttaw;
 /// use ttaw;
 ///     assert_eq!(ttaw::metaphone::encoding("Arnow").primary, "ARN");
-///  
+///     assert_eq!(ttaw::metaphone::encoding("Arnow").secondary, "ARNF");
+///
+///     assert_eq!(ttaw::metaphone::encoding("detestable").primary, 
