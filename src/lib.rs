@@ -44,4 +44,10 @@ extern crate pest;
 ///     assert_eq!(ttaw::metaphone::encoding("detestable").primary, "TTSTPL");
 ///     assert_eq!(ttaw::metaphone::encoding("detestable").secondary, "TTSTPL");
 /// ```
-extern crate pe
+extern crate pest_derive;
+extern crate reqwest;
+extern crate serde_json;
+mod error;
+pub use error::Error;
+pub mod cmu;
+pub mod metaphone;
