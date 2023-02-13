@@ -132,3 +132,137 @@ pub fn alliteration(a: &str, b: &str) -> bool {
     );
 
     log::info!(
+        "|{: ^10} | {: ^10} | {: ^10} |",
+        b,
+        b_phonetic.primary,
+        b_phonetic.secondary
+    );
+
+    let mut a_phonetic_head_primary = a_phonetic.primary;
+
+    if let Some(c) = a_phonetic_head_primary.get(..1) {
+        a_phonetic_head_primary = c.to_string();
+    }
+
+    let mut a_phonetic_head_secondary = a_phonetic.secondary;
+
+    if let Some(c) = a_phonetic_head_secondary.get(..1) {
+        a_phonetic_head_secondary = c.to_string();
+    }
+
+    let mut b_phonetic_head_primary = b_phonetic.primary;
+
+    if let Some(c) = b_phonetic_head_primary.get(..1) {
+        b_phonetic_head_primary = c.to_string();
+    }
+
+    let mut b_phonetic_head_secondary = b_phonetic.secondary;
+
+    if let Some(c) = b_phonetic_head_secondary.get(..1) {
+        b_phonetic_head_secondary = c.to_string();
+    }
+
+    if a_phonetic_head_primary == b_phonetic_head_primary
+        || a_phonetic_head_primary == b_phonetic_head_secondary
+        || a_phonetic_head_secondary == b_phonetic_head_primary
+        || a_phonetic_head_secondary == b_phonetic_head_secondary
+    {
+        return true;
+    }
+
+    false
+}
+
+/// Double Metaphone phonetic encoding.
+///
+/// ```rust
+/// extern crate ttaw;
+/// use ttaw;
+/// assert_eq!(ttaw::metaphone::encoding("Arnow").primary, "ARN");
+/// assert_eq!(ttaw::metaphone::encoding("Arnow").secondary, "ARNF");
+///
+/// assert_eq!(ttaw::metaphone::encoding("detestable").primary, "TTSTPL");
+/// assert_eq!(ttaw::metaphone::encoding("detestable").secondary, "TTSTPL");
+/// ```
+///
+pub fn encoding(input: &str) -> DoubleMetaphone {
+    let mut state = State::new();
+    let word: String = input.to_uppercase() + "     ";
+
+    state.chars = word.chars().collect::<Vec<char>>();
+
+    if Word::parse(Rule::initial_exceptions, word.as_str()).is_ok() {
+        state.pos += 1;
+    }
+
+    if let Some('X') = state.chars.first() {
+        state.p += "S";
+        state.s += "S";
+        state.pos += 1
+    }
+
+    while let Some(c) = state.chars.get(state.pos) {
+        match c {
+            'A' | 'E' | 'I' | 'O' | 'U' | 'Y' | 'À' | 'Ê' | 'É' => {
+                vowel_case(&mut state);
+            }
+
+            'B' => {
+                b_case(&mut state);
+            }
+
+            'Ç' => {
+                c_cedilla_case(&mut state);
+            }
+
+            'C' => {
+                c_case(&mut state);
+            }
+
+            'D' => {
+                d_case(&mut state);
+            }
+
+            'F' => {
+                f_case(&mut state);
+            }
+
+            'G' => {
+                g_case(&mut state);
+            }
+
+            'H' => {
+                h_case(&mut state);
+            }
+
+            'J' => {
+                j_case(&mut state);
+            }
+
+            'K' => {
+                k_case(&mut state);
+            }
+
+            'L' => {
+                l_case(&mut state);
+            }
+
+            'M' => {
+                m_case(&mut state);
+            }
+
+            'N' => {
+                n_case(&mut state);
+            }
+
+            'Ñ' => {
+                top_tilde_n_case(&mut state);
+            }
+
+            'P' => {
+                p_case(&mut state);
+            }
+
+            'Q' => {
+                q_case(&mut state);
+            }
