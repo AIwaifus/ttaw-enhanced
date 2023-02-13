@@ -266,3 +266,137 @@ pub fn encoding(input: &str) -> DoubleMetaphone {
             'Q' => {
                 q_case(&mut state);
             }
+
+            'R' => {
+                r_case(&mut state);
+            }
+
+            'S' => {
+                s_case(&mut state);
+            }
+
+            'T' => {
+                t_case(&mut state);
+            }
+
+            'V' => {
+                v_case(&mut state);
+            }
+
+            'W' => {
+                w_case(&mut state);
+            }
+
+            'X' => {
+                x_case(&mut state);
+            }
+
+            'Z' => {
+                z_case(&mut state);
+            }
+
+            _ => state.pos += 1,
+        }
+    }
+
+    DoubleMetaphone {
+        primary: state.p,
+        secondary: state.s,
+    }
+}
+
+fn get_char_as_string(chars: &[char], pos: usize) -> String {
+    match chars.get(pos) {
+        Some(c) => c.to_string(),
+        None => String::new(),
+    }
+}
+
+fn get_substring(chars: &[char], start: usize, end: usize) -> String {
+    match chars.get(start..end) {
+        Some(s) => s.iter().collect::<String>(),
+        None => String::new(),
+    }
+}
+
+fn germanic(chars: &[char]) -> bool {
+    Word::parse(Rule::germanic, chars.iter().collect::<String>().as_str()).is_ok()
+}
+
+fn slavo_germanic(chars: &[char]) -> bool {
+    Word::parse(
+        Rule::slavo_germanic,
+        chars.iter().collect::<String>().as_str(),
+    )
+    .is_ok()
+}
+
+fn vowel_case(State { pos, p, s, .. }: &mut State) {
+    if *pos == 0 {
+        *p += "A";
+        *s += "A";
+    }
+
+    *pos += 1;
+}
+
+fn b_case(State { pos, chars, p, s }: &mut State) {
+    *p += "P";
+    *s += "P";
+
+    if let Some('B') = chars.get(*pos + 1) {
+        *pos += 1;
+    }
+
+    *pos += 1;
+}
+
+fn c_cedilla_case(State { pos, p, s, .. }: &mut State) {
+    *p += "S";
+    *s += "S";
+    *pos += 1;
+}
+
+fn c_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(pos.wrapping_sub(1)) == Some(&'A')
+        && chars.get(*pos + 1) == Some(&'H')
+        && chars.get(*pos + 2) != Some(&'I')
+        && Word::parse(
+            Rule::vowels,
+            get_char_as_string(chars, pos.wrapping_sub(3)).as_str(),
+        )
+        .is_err()
+        && (chars.get(*pos + 2) != Some(&'E')
+            || get_substring(chars, pos.wrapping_sub(2), *pos + 4) == "BACHER"
+            || get_substring(chars, pos.wrapping_sub(2), *pos + 4) == "MACHER")
+    {
+        *p += "K";
+        *s += "K";
+        *pos += 2;
+
+        return;
+    }
+
+    if *pos == 0 && get_substring(chars, 1, 6) == "AESAR" {
+        *p += "S";
+        *s += "S";
+        *pos += 2;
+
+        return;
+    }
+
+    if get_substring(chars, *pos + 1, *pos + 4) == "HIA" {
+        *p += "K";
+        *s += "K";
+        *pos += 2;
+
+        return;
+    }
+
+    if let Some('H') = chars.get(*pos + 1) {
+        if *pos > 0 && chars.get(*pos + 2) == Some(&'A') && chars.get(*pos + 3) == Some(&'E') {
+            *p += "K";
+            *s += "X";
+            *pos += 2;
+
+            return;
