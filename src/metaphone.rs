@@ -400,3 +400,135 @@ fn c_case(State { pos, chars, p, s }: &mut State) {
             *pos += 2;
 
             return;
+        }
+
+        if *pos == 0
+            && Word::parse(
+                Rule::initial_greek_ch,
+                chars.iter().collect::<String>().as_str(),
+            )
+            .is_ok()
+        {
+            *p += "K";
+            *s += "K";
+            *pos += 2;
+
+            return;
+        }
+
+        if germanic(chars)
+            || Word::parse(
+                Rule::greek_ch,
+                get_substring(chars, pos.wrapping_sub(2), *pos + 4).as_str(),
+            )
+            .is_ok()
+            || (get_char_as_string(chars, *pos + 2) == "T"
+                || get_char_as_string(chars, *pos + 2) == "S")
+            || ((*pos == 0
+                || chars.get(pos.wrapping_sub(1)) == Some(&'A')
+                || chars.get(pos.wrapping_sub(1)) == Some(&'E')
+                || chars.get(pos.wrapping_sub(1)) == Some(&'O')
+                || chars.get(pos.wrapping_sub(1)) == Some(&'U'))
+                && Word::parse(Rule::ch_for_k, get_char_as_string(chars, *pos + 2).as_str())
+                    .is_ok())
+        {
+            *p += "K";
+            *s += "K";
+        } else if *pos == 0 {
+            *p += "X";
+            *s += "X";
+        } else if get_substring(chars, 0, 2) == "MC" {
+            *p += "K";
+            *s += "K";
+        } else {
+            *p += "X";
+            *s += "K"
+        }
+
+        *pos += 2;
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'Z') && get_substring(chars, pos.wrapping_sub(2), *pos) != "WI"
+    {
+        *p += "S";
+        *s += "X";
+        *pos += 2;
+
+        return;
+    }
+
+    if get_substring(chars, *pos + 1, *pos + 4) == "CIA" {
+        *p += "X";
+        *s += "X";
+        *pos += 3;
+
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'C') && !(*pos == 1 && chars.first() == Some(&'M')) {
+        if (chars.get(*pos + 2) == Some(&'I')
+            || chars.get(*pos + 2) == Some(&'E')
+            || chars.get(*pos + 2) == Some(&'H'))
+            && get_substring(chars, *pos + 2, *pos + 4) != "HU"
+        {
+            if (*pos == 1 && chars.get(pos.wrapping_sub(1)) == Some(&'A'))
+                || get_substring(chars, pos.wrapping_sub(1), *pos + 4) == "UCCEE"
+                || get_substring(chars, pos.wrapping_sub(1), *pos + 4) == "UCCES"
+            {
+                *p += "KS";
+                *s += "KS";
+            } else {
+                *p += "X";
+                *s += "X";
+            }
+
+            *pos += 3;
+        } else {
+            *p += "K";
+            *s += "K";
+            *pos += 2;
+
+            return;
+        }
+
+        return;
+    }
+
+    if Some(&'G') == chars.get(*pos + 1)
+        || Some(&'K') == chars.get(*pos + 1)
+        || Some(&'Q') == chars.get(*pos + 1)
+    {
+        *p += "K";
+        *s += "K";
+
+        *pos += 2;
+        return;
+    }
+
+    if Some(&'I') == chars.get(*pos + 1)
+        && (Some(&'E') == chars.get(*pos + 2) || Some(&'O') == chars.get(*pos + 2))
+    {
+        *p += "S";
+        *s += "X";
+        *pos += 2;
+        return;
+    }
+
+    if Some(&'I') == chars.get(*pos + 1)
+        || Some(&'E') == chars.get(*pos + 1)
+        || Some(&'Y') == chars.get(*pos + 1)
+    {
+        *p += "S";
+        *s += "S";
+        *pos += 2;
+        return;
+    }
+
+    *p += "K";
+    *s += "K";
+
+    if Some(&' ') == chars.get(*pos + 1)
+        && (Some(&'C') == chars.get(*pos + 2)
+            || Some(&'G') == chars.get(*pos + 2)
+            || Some(&'Q') == chars.get(*pos + 2))
