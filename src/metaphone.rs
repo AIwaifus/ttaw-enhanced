@@ -532,3 +532,106 @@ fn c_case(State { pos, chars, p, s }: &mut State) {
         && (Some(&'C') == chars.get(*pos + 2)
             || Some(&'G') == chars.get(*pos + 2)
             || Some(&'Q') == chars.get(*pos + 2))
+    {
+        *pos += 3;
+        return;
+    }
+
+    *pos += 1;
+}
+
+fn d_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'G') {
+        if chars.get(*pos + 2) == Some(&'E')
+            || chars.get(*pos + 2) == Some(&'I')
+            || chars.get(*pos + 2) == Some(&'Y')
+        {
+            *p += "J";
+            *s += "J";
+            *pos += 3;
+        } else {
+            *p += "TK";
+            *s += "TK";
+            *pos += 2;
+        }
+
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'T') || chars.get(*pos + 1) == Some(&'D') {
+        *p += "T";
+        *s += "T";
+        *pos += 2;
+
+        return;
+    }
+
+    *p += "T";
+    *s += "T";
+    *pos += 1;
+}
+
+fn f_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'F') {
+        *pos += 1;
+    }
+
+    *pos += 1;
+    *p += "F";
+    *s += "F";
+}
+
+fn g_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'H') {
+        if *pos > 0
+            && Word::parse(
+                Rule::vowels,
+                get_char_as_string(chars, pos.wrapping_sub(1)).as_str(),
+            )
+            .is_err()
+        {
+            *p += "K";
+            *s += "K";
+            *pos += 2;
+
+            return;
+        }
+
+        if *pos == 0 {
+            if chars.get(*pos + 2) == Some(&'I') {
+                *p += "J";
+                *s += "J";
+            } else {
+                *p += "K";
+                *s += "K";
+            }
+
+            *pos += 2;
+
+            return;
+        }
+
+        if (chars.get(pos.wrapping_sub(2)) == Some(&'B')
+            || chars.get(pos.wrapping_sub(2)) == Some(&'H')
+            || chars.get(pos.wrapping_sub(2)) == Some(&'D'))
+            || (chars.get(pos.wrapping_sub(3)) == Some(&'B')
+                || chars.get(pos.wrapping_sub(3)) == Some(&'H')
+                || chars.get(pos.wrapping_sub(3)) == Some(&'D'))
+            || (chars.get(pos.wrapping_sub(4)) == Some(&'B')
+                || chars.get(pos.wrapping_sub(4)) == Some(&'H'))
+        {
+            *pos += 2;
+
+            return;
+        }
+
+        if *pos > 2
+            && chars.get(pos.wrapping_sub(1)) == Some(&'U')
+            && Word::parse(
+                Rule::g_for_f,
+                get_char_as_string(chars, pos.wrapping_sub(3)).as_str(),
+            )
+            .is_ok()
+        {
+            *p += "F";
+            *s += "F";
