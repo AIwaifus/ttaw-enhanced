@@ -84,3 +84,51 @@ fn no_rhyme() {
     assert!(!cmudict.rhyme("empty", "  ").unwrap());
     assert!(!cmudict.rhyme("empty", "").unwrap());
     assert!(!cmudict.rhyme("empty", "\t").unwrap());
+    assert!(!cmudict.rhyme("empty", "\r").unwrap());
+    assert!(!cmudict.rhyme("empty", "\n").unwrap());
+}
+
+#[test]
+fn general_syllabic() {
+    let cmudict = CmuDict::new("cmudict.test").unwrap();
+    assert!(!cmudict.rhyme("cleaver", "silver").unwrap());
+    assert!(!cmudict.rhyme("pitter", "patter").unwrap());
+    assert!(!cmudict.rhyme("bottle", "fiddle").unwrap());
+}
+
+#[test]
+fn alliterates_with_spaces() {
+    let cmudict = CmuDict::new("cmudict.test").unwrap();
+    assert!(cmudict.alliteration("bouncing", "  bears").unwrap());
+    assert!(cmudict.alliteration("bouncing", "bears  ").unwrap());
+    assert!(cmudict.alliteration(" bouncing", "bears").unwrap());
+    assert!(cmudict.alliteration("bouncing  ", "bears").unwrap());
+}
+
+#[test]
+fn alliterates_with_caps() {
+    let cmudict = CmuDict::new("cmudict.test").unwrap();
+    assert!(cmudict.alliteration("Bouncing", "  bears").unwrap());
+    assert!(cmudict.alliteration("bouncing", "Bears  ").unwrap());
+    assert!(cmudict.alliteration(" bouncinG", "bEars").unwrap());
+    assert!(cmudict.alliteration("bouncing  ", "beaRs").unwrap());
+}
+
+#[test]
+fn alliterates() {
+    let cmudict = CmuDict::new("cmudict.test").unwrap();
+    assert!(cmudict.alliteration("bouncing", "bears").unwrap());
+    assert!(cmudict.alliteration("bounding", "bears").unwrap());
+}
+
+#[test]
+fn quick_brown_fox() {
+    let cmudict = CmuDict::new("cmudict.test").unwrap();
+    assert!(!cmudict.alliteration("where", "ants").unwrap());
+
+    assert!(!cmudict.alliteration("The", "quick").unwrap());
+    assert!(!cmudict.alliteration("brown", "fox").unwrap());
+    assert!(!cmudict.alliteration("jumps", "over").unwrap());
+    assert!(!cmudict.alliteration("a", "lazy").unwrap());
+    assert!(!cmudict.alliteration("lazy", "dog").unwrap());
+}
