@@ -1032,3 +1032,141 @@ fn s_case(State { pos, chars, p, s }: &mut State) {
                 }
 
                 *pos += 3;
+
+                return;
+            }
+
+            if *pos == 0
+                && Word::parse(Rule::vowels, get_char_as_string(chars, 3).as_str()).is_err()
+                && chars.get(3) != Some(&'W')
+            {
+                *p += "X";
+                *s += "S";
+            } else {
+                *p += "X";
+                *s += "X";
+            }
+
+            *pos += 3;
+
+            return;
+        }
+
+        if chars.get(*pos + 2) == Some(&'I')
+            || chars.get(*pos + 2) == Some(&'E')
+            || chars.get(*pos + 2) == Some(&'Y')
+        {
+            *p += "S";
+            *s += "S";
+            *pos += 3;
+            return;
+        }
+
+        *p += "SK";
+        *s += "SK";
+        *pos += 3;
+
+        return;
+    }
+
+    if *pos == chars.len().wrapping_sub(6)
+        && (get_substring(chars, pos.wrapping_sub(2), *pos) == "AI"
+            || get_substring(chars, pos.wrapping_sub(2), *pos) == "OI")
+    {
+        *s += "S";
+    } else {
+        *p += "S";
+        *s += "S";
+    }
+
+    if chars.get(*pos + 1) == Some(&'S') {
+        *pos += 1;
+    }
+
+    *pos += 1;
+}
+
+fn t_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'I')
+        && chars.get(*pos + 2) == Some(&'O')
+        && chars.get(*pos + 3) == Some(&'N')
+    {
+        *p += "X";
+        *s += "X";
+        *pos += 3;
+
+        return;
+    }
+
+    if (chars.get(*pos + 1) == Some(&'I') && chars.get(*pos + 2) == Some(&'A'))
+        || (chars.get(*pos + 1) == Some(&'C') && chars.get(*pos + 2) == Some(&'H'))
+    {
+        *p += "X";
+        *s += "X";
+        *pos += 3;
+
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'H')
+        || (chars.get(*pos + 1) == Some(&'T') && chars.get(*pos + 2) == Some(&'H'))
+    {
+        if germanic(chars)
+            || ((chars.get(*pos + 2) == Some(&'O') || chars.get(*pos + 2) == Some(&'A'))
+                && chars.get(*pos + 3) == Some(&'M'))
+        {
+            *p += "T";
+            *s += "T";
+        } else {
+            *p += "0";
+            *s += "T";
+        }
+
+        *pos += 2;
+
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'T') || chars.get(*pos + 1) == Some(&'D') {
+        *pos += 1;
+    }
+
+    *pos += 1;
+    *p += "T";
+    *s += "T";
+}
+
+fn v_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'V') {
+        *pos += 1;
+    }
+
+    *p += "F";
+    *s += "F";
+    *pos += 1;
+}
+
+fn w_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'R') {
+        *p += "R";
+        *s += "R";
+        *pos += 2;
+
+        return;
+    }
+
+    if *pos == 0 {
+        if Word::parse(Rule::vowels, get_char_as_string(chars, *pos + 1).as_str()).is_ok() {
+            *p += "A";
+            *s += "F";
+        } else if chars.get(*pos + 1) == Some(&'H') {
+            *p += "A";
+            *s += "A";
+        }
+    }
+
+    if ((chars.get(pos.wrapping_sub(1)) == Some(&'E')
+        || chars.get(pos.wrapping_sub(1)) == Some(&'O'))
+        && chars.get(*pos + 1) == Some(&'S')
+        && chars.get(*pos + 2) == Some(&'K')
+        && (chars.get(*pos + 3) == Some(&'I') || chars.get(*pos + 3) == Some(&'Y')))
