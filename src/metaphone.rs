@@ -1320,3 +1320,45 @@ mod tests {
         word = "arachnid".to_uppercase();
         assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
         word = "character".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_ok());
+
+        word = "aristotle".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
+        word = "charisma".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_ok());
+    }
+
+    #[test]
+    fn vowels() {
+        let mut letter = "X";
+        assert!(Word::parse(Rule::vowels, letter).is_err());
+        letter = "À";
+        assert!(Word::parse(Rule::vowels, letter).is_err());
+        letter = "A";
+        assert!(Word::parse(Rule::vowels, letter).is_ok());
+        letter = "E";
+        assert!(Word::parse(Rule::vowels, letter).is_ok());
+        letter = "I";
+        assert!(Word::parse(Rule::vowels, letter).is_ok());
+        letter = "O";
+        assert!(Word::parse(Rule::vowels, letter).is_ok());
+        letter = "U";
+        assert!(Word::parse(Rule::vowels, letter).is_ok());
+        letter = "Y";
+        assert!(Word::parse(Rule::vowels, letter).is_ok());
+    }
+
+    #[test]
+    fn greek_ch() {
+        let mut word = "cucumber".to_uppercase();
+        assert!(Word::parse(Rule::greek_ch, word.as_str()).is_err());
+        word = "arch".to_uppercase();
+        assert!(Word::parse(Rule::greek_ch, word.as_str()).is_err());
+        word = "architect".to_uppercase();
+        assert!(Word::parse(Rule::greek_ch, word.as_str()).is_ok());
+        word = "orchestra".to_uppercase();
+        assert!(Word::parse(Rule::greek_ch, word.as_str()).is_ok());
+        word = "orchid".to_uppercase();
+        assert!(Word::parse(Rule::greek_ch, word.as_str()).is_ok());
+    }
+}
