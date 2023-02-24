@@ -1170,3 +1170,153 @@ fn w_case(State { pos, chars, p, s }: &mut State) {
         && chars.get(*pos + 1) == Some(&'S')
         && chars.get(*pos + 2) == Some(&'K')
         && (chars.get(*pos + 3) == Some(&'I') || chars.get(*pos + 3) == Some(&'Y')))
+        || get_substring(chars, 0, 3) == "SCH"
+        || (*pos == chars.len().wrapping_sub(6)
+            && Word::parse(
+                Rule::vowels,
+                get_char_as_string(chars, pos.wrapping_sub(1)).as_str(),
+            )
+            .is_ok())
+    {
+        *s += "F";
+        *pos += 1;
+
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'I')
+        && (chars.get(*pos + 2) == Some(&'C') || chars.get(*pos + 2) == Some(&'T'))
+        && chars.get(*pos + 3) == Some(&'Z')
+    {
+        *p += "TS";
+        *s += "FX";
+        *pos += 4;
+
+        return;
+    }
+
+    *pos += 1;
+}
+
+fn x_case(State { pos, chars, p, s }: &mut State) {
+    if !(*pos == chars.len().wrapping_sub(6)
+        && (chars.get(pos.wrapping_sub(1)) == Some(&'U')
+            && (chars.get(pos.wrapping_sub(2)) == Some(&'A')
+                || chars.get(pos.wrapping_sub(2)) == Some(&'O'))))
+    {
+        *p += "KS";
+        *s += "KS"
+    }
+
+    if chars.get(*pos + 1) == Some(&'C') || chars.get(*pos + 1) == Some(&'X') {
+        *pos += 1;
+    }
+
+    *pos += 1;
+}
+
+fn z_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'H') {
+        *p += "J";
+        *s += "J";
+        *pos += 2;
+
+        return;
+    } else if (chars.get(*pos + 1) == Some(&'Z')
+        && (chars.get(*pos + 2) == Some(&'A')
+            || chars.get(*pos + 2) == Some(&'I')
+            || chars.get(*pos + 2) == Some(&'O')))
+        || (slavo_germanic(chars) && *pos > 0 && chars.get(pos.wrapping_sub(1)) != Some(&'T'))
+    {
+        *p += "S";
+        *s += "TS"
+    } else {
+        *p += "S";
+        *s += "S";
+    }
+
+    if chars.get(*pos + 1) == Some(&'Z') {
+        *pos += 1;
+    }
+
+    *pos += 1;
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn slavo_germanic() {
+        let mut word = "apple".to_uppercase();
+        assert!(Word::parse(Rule::slavo_germanic, word.as_str()).is_err());
+        word = "witzig".to_uppercase();
+        assert!(Word::parse(Rule::slavo_germanic, word.as_str()).is_ok());
+        word = "watt".to_uppercase();
+        assert!(Word::parse(Rule::slavo_germanic, word.as_str()).is_ok());
+        word = "kilometer".to_uppercase();
+        assert!(Word::parse(Rule::slavo_germanic, word.as_str()).is_ok());
+        word = "eczema".to_uppercase();
+        assert!(Word::parse(Rule::slavo_germanic, word.as_str()).is_ok());
+    }
+
+    #[test]
+    fn germanic() {
+        let mut word = "tomato".to_uppercase();
+        assert!(Word::parse(Rule::germanic, word.as_str()).is_err());
+        word = "vanity".to_uppercase();
+        assert!(Word::parse(Rule::germanic, word.as_str()).is_ok());
+        word = "vondur".to_uppercase();
+        assert!(Word::parse(Rule::germanic, word.as_str()).is_ok());
+        word = "schema".to_uppercase();
+        assert!(Word::parse(Rule::germanic, word.as_str()).is_ok());
+    }
+
+    #[test]
+    fn initial_exceptions() {
+        let mut word = "spruce".to_uppercase();
+        assert!(Word::parse(Rule::initial_exceptions, word.as_str()).is_err());
+        word = "gnome".to_uppercase();
+        assert!(Word::parse(Rule::initial_exceptions, word.as_str()).is_ok());
+        word = "knight".to_uppercase();
+        assert!(Word::parse(Rule::initial_exceptions, word.as_str()).is_ok());
+        word = "pneumonic".to_uppercase();
+        assert!(Word::parse(Rule::initial_exceptions, word.as_str()).is_ok());
+        word = "wrangle".to_uppercase();
+        assert!(Word::parse(Rule::initial_exceptions, word.as_str()).is_ok());
+        word = "pseudo".to_uppercase();
+        assert!(Word::parse(Rule::initial_exceptions, word.as_str()).is_ok());
+    }
+
+    #[test]
+    fn initial_greek_ch() {
+        let mut word = "tulip".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
+
+        word = "pliant".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
+        word = "chiaroscuro".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_ok());
+
+        word = "seem".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
+        word = "chemistry".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_ok());
+
+        word = "organ".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
+        word = "oregon".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
+        word = "chores".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
+        word = "chorus".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_ok());
+
+        word = "ymca".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
+        word = "chymera".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_ok());
+
+        word = "arachnid".to_uppercase();
+        assert!(Word::parse(Rule::initial_greek_ch, word.as_str()).is_err());
+        word = "character".to_uppercase();
