@@ -905,3 +905,130 @@ fn p_case(State { pos, chars, p, s }: &mut State) {
     }
 
     *pos += 1;
+
+    *p += "P";
+    *s += "P";
+}
+
+fn q_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'Q') {
+        *pos += 1;
+    }
+
+    *pos += 1;
+    *p += "K";
+    *s += "K";
+}
+
+fn r_case(State { pos, chars, p, s }: &mut State) {
+    if *pos == chars.len().wrapping_sub(6)
+        && !slavo_germanic(chars)
+        && chars.get(pos.wrapping_sub(1)) == Some(&'E')
+        && chars.get(pos.wrapping_sub(2)) == Some(&'I')
+        && chars.get(pos.wrapping_sub(4)) != Some(&'M')
+        && (chars.get(pos.wrapping_sub(3)) != Some(&'E')
+            && chars.get(pos.wrapping_sub(3)) != Some(&'A'))
+    {
+        *s += "R";
+    } else {
+        *p += "R";
+        *s += "R";
+    }
+
+    if chars.get(*pos + 1) == Some(&'R') {
+        *pos += 1;
+    }
+
+    *pos += 1;
+}
+
+fn s_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'L')
+        && (chars.get(pos.wrapping_sub(1)) == Some(&'I')
+            || chars.get(pos.wrapping_sub(1)) == Some(&'Y'))
+    {
+        *pos += 1;
+
+        return;
+    }
+
+    if *pos == 0 && get_substring(chars, 1, 5) == "UGAR" {
+        *p += "X";
+        *s += "S";
+        *pos += 1;
+
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'H') {
+        if Word::parse(
+            Rule::h_for_s,
+            get_substring(chars, *pos + 1, *pos + 5).as_str(),
+        )
+        .is_ok()
+        {
+            *p += "S";
+            *s += "S";
+        } else {
+            *p += "X";
+            *s += "X";
+        }
+
+        *pos += 2;
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'I')
+        && (chars.get(*pos + 2) == Some(&'O') || chars.get(*pos + 2) == Some(&'A'))
+    {
+        if slavo_germanic(chars) {
+            *p += "S";
+            *s += "S";
+        } else {
+            *p += "S";
+            *s += "X";
+        }
+
+        *pos += 3;
+
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'Z')
+        || (*pos == 0
+            && (chars.get(*pos + 1) == Some(&'L')
+                || chars.get(*pos + 1) == Some(&'M')
+                || chars.get(*pos + 1) == Some(&'N')
+                || chars.get(*pos + 1) == Some(&'W')))
+    {
+        *p += "S";
+        *s += "X";
+
+        if chars.get(*pos + 1) == Some(&'Z') {
+            *pos += 1;
+        }
+
+        *pos += 1;
+
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'C') {
+        if chars.get(*pos + 2) == Some(&'H') {
+            if Word::parse(
+                Rule::dutch_sch,
+                get_substring(chars, *pos + 3, *pos + 5).as_str(),
+            )
+            .is_ok()
+            {
+                if get_substring(chars, *pos + 3, *pos + 5) == "ER"
+                    || get_substring(chars, *pos + 3, *pos + 5) == "EN"
+                {
+                    *p += "X";
+                    *s += "SK"
+                } else {
+                    *p += "SK";
+                    *s += "SK"
+                }
+
+                *pos += 3;
