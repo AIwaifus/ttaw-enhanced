@@ -769,3 +769,139 @@ fn h_case(State { pos, chars, p, s }: &mut State) {
 fn j_case(State { pos, chars, p, s }: &mut State) {
     if get_substring(chars, *pos, *pos + 4) == "JOSE" || get_substring(chars, 0, 4) == "SAN " {
         if get_substring(chars, 0, 4) == "SAN " || (*pos == 0 && chars.get(*pos + 4) == Some(&' '))
+        {
+            *p += "H";
+            *s += "H";
+        } else {
+            *p += "J";
+            *s += "H";
+        }
+
+        *pos += 1;
+
+        return;
+    }
+
+    if *pos == 0 {
+        *p += "J";
+        *s += "A";
+    } else if !slavo_germanic(chars)
+        && (chars.get(*pos + 1) == Some(&'A') || chars.get(*pos + 1) == Some(&'O'))
+        && Word::parse(
+            Rule::vowels,
+            get_char_as_string(chars, pos.wrapping_sub(1)).as_str(),
+        )
+        .is_ok()
+    {
+        *p += "J";
+        *s += "H";
+    } else if *pos == chars.len().wrapping_sub(6) {
+        *p += "J";
+    } else if chars.get(pos.wrapping_sub(1)) != Some(&'S')
+        && chars.get(pos.wrapping_sub(1)) != Some(&'K')
+        && chars.get(pos.wrapping_sub(1)) != Some(&'L')
+        && Word::parse(
+            Rule::j_for_j_exception,
+            get_char_as_string(chars, *pos + 1).as_str(),
+        )
+        .is_err()
+    {
+        *p += "J";
+        *s += "J";
+    } else if chars.get(*pos + 1) == Some(&'J') {
+        *pos += 1;
+    }
+
+    *pos += 1;
+}
+
+fn k_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'K') {
+        *pos += 1;
+    }
+
+    *p += "K";
+    *s += "K";
+    *pos += 1;
+}
+
+fn l_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'L') {
+        if *pos == chars.len().wrapping_sub(8)
+            && ((chars.get(pos.wrapping_sub(1)) == Some(&'A') && chars.get(*pos + 2) == Some(&'E'))
+                || (chars.get(pos.wrapping_sub(1)) == Some(&'I')
+                    && (chars.get(*pos + 2) == Some(&'O') || chars.get(*pos + 2) == Some(&'A'))))
+            || (chars.get(pos.wrapping_sub(1)) == Some(&'A')
+                && chars.get(*pos + 2) == Some(&'E')
+                && (chars.get(chars.len().wrapping_sub(6)) == Some(&'A')
+                    || chars.get(chars.len().wrapping_sub(6)) == Some(&'O')
+                    || Word::parse(
+                        Rule::alle,
+                        get_substring(
+                            chars,
+                            chars.len().wrapping_sub(7),
+                            chars.len().wrapping_sub(5),
+                        )
+                        .as_str(),
+                    )
+                    .is_ok()))
+        {
+            *p += "L";
+            *pos += 2;
+
+            return;
+        }
+
+        *pos += 1;
+    }
+
+    *p += "L";
+    *s += "L";
+    *pos += 1;
+}
+
+fn m_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'M')
+        || (chars.get(pos.wrapping_sub(1)) == Some(&'U')
+            && chars.get(*pos + 1) == Some(&'B')
+            && (*pos + 1 == chars.len().wrapping_sub(6)
+                || get_substring(chars, *pos + 2, *pos + 4) == "ER"))
+    {
+        *pos += 1;
+    }
+
+    *pos += 1;
+    *p += "M";
+    *s += "M";
+}
+
+fn n_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'N') {
+        *pos += 1;
+    }
+
+    *pos += 1;
+    *p += "N";
+    *s += "N";
+}
+
+fn top_tilde_n_case(State { pos, p, s, .. }: &mut State) {
+    *pos += 1;
+    *p += "N";
+    *s += "N";
+}
+
+fn p_case(State { pos, chars, p, s }: &mut State) {
+    if chars.get(*pos + 1) == Some(&'H') {
+        *p += "F";
+        *s += "F";
+        *pos += 2;
+
+        return;
+    }
+
+    if chars.get(*pos + 1) == Some(&'P') || chars.get(*pos + 1) == Some(&'B') {
+        *pos += 1;
+    }
+
+    *pos += 1;
