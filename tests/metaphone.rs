@@ -191,3 +191,125 @@ fn drop_initial() {
     assert_eq!(encoding("ba").primary.len(), 1);
     assert_eq!(encoding("be").primary.len(), 1);
     assert_eq!(encoding("bi").primary.len(), 1);
+    assert_eq!(encoding("bo").primary.len(), 1);
+    assert_eq!(encoding("bu").primary.len(), 1);
+    assert_eq!(encoding("by").primary.len(), 1);
+}
+
+#[test]
+fn b_to_p() {
+    assert_eq!(encoding("b").primary.get(..1), Some("P"));
+    assert_eq!(encoding("bb").primary.get(..1), Some("P"));
+}
+
+#[test]
+fn c_cedilla_to_s() {
+    assert_eq!(encoding("Ç").primary.get(..1), Some("S"));
+}
+
+#[test]
+fn when_c_to_k() {
+    assert_eq!(encoding("ACH").primary.get(1..2), Some("K"));
+    assert_ne!(encoding("AACH").primary.get(2..3), Some("K"));
+    assert_ne!(encoding("ACHI").primary.get(1..2), Some("K"));
+    assert_eq!(encoding("ACHB").primary.get(1..2), Some("K"));
+    assert_eq!(encoding("MACHER").secondary.get(1..2), Some("K"));
+    assert_eq!(encoding("BACHER").secondary.get(1..2), Some("K"));
+}
+
+#[test]
+fn caesar() {
+    assert_eq!(encoding("CAESAR").primary.get(..1), Some("S"));
+}
+
+#[test]
+fn chianti() {
+    assert_eq!(encoding("chianti").primary.get(..1), Some("K"));
+}
+
+#[test]
+fn michael() {
+    assert_eq!(encoding("michael").primary.get(1..2), Some("K"));
+
+    assert_eq!(encoding("michael").secondary.get(1..2), Some("X"));
+}
+
+#[test]
+fn chiastic() {
+    assert_eq!(encoding("chiastic").primary.get(..1), Some("K"));
+}
+
+#[test]
+fn chemical_c_to_k() {
+    assert_eq!(encoding("chemical").primary.get(..1), Some("K"));
+}
+
+#[test]
+fn choral_c_to_k() {
+    assert_eq!(encoding("choral").primary.get(..1), Some("K"));
+}
+
+#[test]
+fn chyme_c_to_k() {
+    assert_eq!(encoding("chyme").primary.get(..1), Some("K"));
+}
+
+#[test]
+fn character_c_to_k() {
+    assert_eq!(encoding("character").primary.get(..1), Some("K"));
+}
+
+#[test]
+fn charisma_c_to_k() {
+    assert_eq!(encoding("charisma").primary.get(..1), Some("K"));
+}
+
+#[test]
+fn von_ch_c_to_k() {
+    assert_eq!(encoding("von ch").primary.get(2..3), Some("K"));
+}
+
+#[test]
+fn schooner_c_to_k() {
+    assert_eq!(encoding("schooner").primary.get(1..2), Some("K"));
+}
+
+#[test]
+fn orchestra_c_to_k() {
+    assert_eq!(encoding("orchestra").primary.get(2..3), Some("K"));
+}
+
+#[test]
+fn architect_c_to_k() {
+    assert_eq!(encoding("architect").primary.get(2..3), Some("K"));
+}
+
+#[test]
+fn arch_not_c_to_k() {
+    assert_ne!(encoding("arch").primary.get(2..3), Some("K"));
+}
+
+#[test]
+fn orchid_c_to_k() {
+    assert_eq!(encoding("orchid").primary.get(2..3), Some("K"));
+}
+
+#[test]
+fn chthonic_c_to_k() {
+    assert_eq!(encoding("chthonic").primary.get(..1), Some("K"));
+}
+
+#[test]
+fn fuchsia_c_to_k() {
+    assert_eq!(encoding("fuchsia").primary.get(1..2), Some("K"));
+}
+
+#[test]
+fn chloride_c_to_k() {
+    assert_eq!(encoding("chloride").primary.get(..1), Some("K"));
+}
+
+#[test]
+fn chroma_c_to_k() {
+    assert_eq!(encoding("chroma").primary.get(..1), Some("K"));
+}
