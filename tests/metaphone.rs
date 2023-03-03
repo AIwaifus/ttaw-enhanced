@@ -313,3 +313,129 @@ fn chloride_c_to_k() {
 fn chroma_c_to_k() {
     assert_eq!(encoding("chroma").primary.get(..1), Some("K"));
 }
+
+#[test]
+fn tichner_c_to_k() {
+    assert_eq!(encoding("tichner").secondary.get(1..2), Some("K"));
+}
+
+#[test]
+fn mchugh_c_to_k() {
+    assert_eq!(encoding("McHugh").primary.get(1..2), Some("K"));
+}
+
+#[test]
+fn chore() {
+    assert_eq!(encoding("chore").primary.get(..1), Some("X"));
+}
+
+#[test]
+fn h_after_c() {
+    assert_eq!(encoding("achievement").primary.get(1..2), Some("X"));
+
+    assert_eq!(encoding("achievement").secondary.get(1..2), Some("K"));
+}
+
+#[test]
+fn czerny() {
+    assert_eq!(encoding("czerny").primary.get(..1), Some("S"));
+
+    assert_eq!(encoding("czerny").secondary.get(..1), Some("X"));
+}
+
+#[test]
+fn focaccia() {
+    assert_eq!(encoding("focaccia").primary.get(2..3), Some("X"));
+}
+
+#[test]
+fn accident() {
+    assert_eq!(encoding("accident").primary.get(1..2), Some("K"));
+    assert_eq!(encoding("accident").primary.get(2..3), Some("S"));
+}
+
+#[test]
+fn accede() {
+    assert_eq!(encoding("accede").primary.get(1..2), Some("K"));
+    assert_eq!(encoding("accede").primary.get(2..3), Some("S"));
+}
+
+#[test]
+fn succeed() {
+    assert_eq!(encoding("succeed").primary.get(1..2), Some("K"));
+    assert_eq!(encoding("succeed").primary.get(2..3), Some("S"));
+}
+
+#[test]
+fn bertucci() {
+    assert_eq!(encoding("bertucci").primary.get(3..4), Some("X"));
+}
+
+#[test]
+fn hiccups_c_to_k() {
+    assert_eq!(encoding("hiccups").primary.get(1..2), Some("K"));
+}
+
+#[test]
+fn knack_c_to_k() {
+    assert_eq!(encoding("knack").primary.get(1..2), Some("K"));
+}
+
+#[test]
+fn ancient() {
+    assert_eq!(encoding("ancient").primary.get(2..3), Some("S"));
+
+    assert_eq!(encoding("ancient").secondary.get(2..3), Some("X"));
+}
+
+#[test]
+fn delicious() {
+    assert_eq!(encoding("delicious").primary.get(2..3), Some("S"));
+
+    assert_eq!(encoding("delicious").secondary.get(2..3), Some("X"));
+}
+
+#[test]
+fn acicula() {
+    assert_eq!(encoding("acicula").primary.get(1..2), Some("S"));
+}
+
+#[test]
+fn abduce() {
+    assert_eq!(encoding("abduce").primary.get(3..4), Some("S"));
+}
+
+#[test]
+fn acyl() {
+    assert_eq!(encoding("acyl").primary.get(1..2), Some("S"));
+}
+
+#[test]
+fn maccaffery() {
+    assert_eq!(encoding("Mac Caffrey").primary.get(1..2), Some("K"))
+}
+
+#[test]
+fn macgregor() {
+    assert_eq!(encoding("Mac Gregor").primary.get(1..2), Some("K"))
+}
+
+#[test]
+fn macquillan() {
+    assert_eq!(encoding("Mac Quillan").primary.get(1..2), Some("K"))
+}
+
+#[test]
+fn aback() {
+    assert_eq!(encoding("aback").primary.get(2..3), Some("K"))
+}
+
+#[test]
+fn acquit() {
+    assert_eq!(encoding("acquit").primary.get(1..2), Some("K"))
+}
+
+#[test]
+fn acclimate() {
+    assert_eq!(encoding("acclimate").primary.get(1..2), Some("K"))
+}
