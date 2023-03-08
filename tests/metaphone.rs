@@ -439,3 +439,133 @@ fn acquit() {
 fn acclimate() {
     assert_eq!(encoding("acclimate").primary.get(1..2), Some("K"))
 }
+
+#[test]
+fn edge() {
+    assert_eq!(encoding("edge").primary.get(1..2), Some("J"))
+}
+
+#[test]
+fn pidgin() {
+    assert_eq!(encoding("pidgin").primary.get(1..2), Some("J"))
+}
+
+#[test]
+fn edgy() {
+    assert_eq!(encoding("edgy").primary.get(1..2), Some("J"))
+}
+
+#[test]
+fn edgar() {
+    assert_eq!(encoding("Edgar").primary.get(1..3), Some("TK"))
+}
+
+#[test]
+fn width() {
+    assert_eq!(encoding("width").primary.get(1..2), Some("T"))
+}
+
+#[test]
+fn add() {
+    assert_eq!(encoding("add").primary.get(1..2), Some("T"))
+}
+
+#[test]
+fn abduce_slice() {
+    assert_eq!(encoding("Abduce").primary.get(2..3), Some("T"))
+}
+
+#[test]
+fn affect() {
+    assert_eq!(encoding("affect").primary.get(1..2), Some("F"))
+}
+
+#[test]
+fn abaft() {
+    assert_eq!(encoding("abaft").primary.get(2..3), Some("F"))
+}
+
+#[test]
+fn aargh() {
+    assert_eq!(encoding("aargh").primary.get(2..3), Some("K"))
+}
+
+#[test]
+fn ghislane() {
+    assert_eq!(encoding("ghislane").primary.get(..1), Some("J"))
+}
+
+#[test]
+fn ghoul() {
+    assert_eq!(encoding("ghoul").primary.get(..1), Some("K"))
+}
+
+#[test]
+fn hugh() {
+    assert_eq!(encoding("hugh").primary, "H")
+}
+
+#[test]
+fn bough() {
+    assert_eq!(encoding("bough").primary, "P")
+}
+
+#[test]
+fn broughton() {
+    assert_eq!(encoding("broughton").primary, "PRTN")
+}
+
+#[test]
+fn laugh() {
+    assert_eq!(encoding("laugh").primary, "LF")
+}
+
+#[test]
+fn curagh() {
+    assert_eq!(encoding("curagh").primary, "KRK")
+}
+
+#[test]
+fn weight() {
+    assert_eq!(encoding("weight").primary, "AT")
+}
+
+#[test]
+fn agnize() {
+    assert_eq!(encoding("agnize").primary.get(..3), Some("AKN"));
+
+    assert_eq!(encoding("agnize").secondary.get(..2), Some("AN"));
+}
+
+#[test]
+fn tagliaro() {
+    assert_eq!(encoding("tagliaro").primary, "TKLR");
+
+    assert_eq!(encoding("tagliaro").secondary, "TLR");
+}
+
+#[test]
+fn acceptingness() {
+    assert!(encoding("acceptingness").primary.ends_with("NNS"));
+
+    assert!(encoding("acceptingness").secondary.ends_with("NKNS"));
+}
+
+#[test]
+fn cagney() {
+    assert_eq!(encoding("cagney").primary, "KKN")
+}
+
+#[test]
+fn gerben() {
+    assert_eq!(encoding("Gerben").primary.get(..1), Some("K"));
+    assert_eq!(encoding("Gerben").secondary.get(..1), Some("J"));
+}
+
+#[test]
+fn auger() {
+    assert_eq!(encoding("auger").primary.get(1..2), Some("K"));
+    assert_eq!(encoding("auger").secondary.get(1..2), Some("J"));
+}
+
+#[test]
