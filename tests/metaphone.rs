@@ -569,3 +569,135 @@ fn auger() {
 }
 
 #[test]
+fn bulgy() {
+    assert_eq!(encoding("bulgy").primary.get(2..3), Some("K"));
+    assert_eq!(encoding("bulgy").secondary.get(2..3), Some("J"));
+}
+
+#[test]
+fn altogether() {
+    assert_eq!(encoding("altogether").primary.get(3..4), Some("K"))
+}
+
+#[test]
+fn vanagema() {
+    assert_eq!(encoding("Van Agema").primary.get(2..3), Some("K"))
+}
+
+#[test]
+fn vongoggin() {
+    assert_eq!(encoding("Von Goggin").primary.get(3..4), Some("K"))
+}
+
+#[test]
+fn tangier() {
+    assert_eq!(encoding("tangier").primary.get(2..3), Some("J"))
+}
+
+#[test]
+fn biaggi() {
+    assert_eq!(encoding("biaggi").primary.get(1..2), Some("J"));
+    assert_eq!(encoding("biaggi").secondary.get(1..2), Some("K"));
+}
+
+#[test]
+fn two_gs() {
+    assert_eq!(encoding("GG").primary, "K")
+}
+
+#[test]
+fn one_g() {
+    assert_eq!(encoding("G").primary, "K")
+}
+
+#[test]
+fn ha() {
+    assert_eq!(encoding("ha").primary, "H")
+}
+
+#[test]
+fn aha() {
+    assert_eq!(encoding("aha").primary, "AH")
+}
+
+#[test]
+fn one_h() {
+    assert_eq!(encoding("h").primary, "")
+}
+
+#[test]
+fn sanjacinto() {
+    assert_eq!(encoding("San Jacinto").primary.get(2..3), Some("H"))
+}
+
+#[test]
+fn jose() {
+    assert_eq!(encoding("Jose").primary.get(..1), Some("H"))
+}
+
+#[test]
+fn joseph() {
+    assert_eq!(encoding("Joseph").primary.get(..1), Some("J"));
+    assert_eq!(encoding("Joseph").secondary.get(..1), Some("H"));
+}
+
+#[test]
+fn jankelowicz() {
+    assert_eq!(encoding("Jankelowicz").primary.get(..1), Some("J"));
+    assert_eq!(encoding("Jankelowicz").secondary.get(..1), Some("A"));
+}
+
+#[test]
+fn bajador() {
+    assert_eq!(encoding("bajador").primary.get(1..2), Some("J"));
+    assert_eq!(encoding("bajador").secondary.get(1..2), Some("H"));
+}
+
+#[test]
+fn svaraj() {
+    assert_eq!(encoding("svaraj").primary, "SFRJ");
+    assert_eq!(encoding("svaraj").secondary, "SFR");
+}
+
+#[test]
+fn abject() {
+    assert_eq!(encoding("abject").primary.get(2..3), Some("J"))
+}
+
+#[test]
+fn sjji() {
+    assert_eq!(encoding("sjji").primary.get(..1), Some("S"))
+}
+
+#[test]
+fn disject() {
+    assert_eq!(encoding("disject").primary, "TSKT")
+}
+
+#[test]
+fn trekker() {
+    assert_eq!(encoding("trekker").primary, "TRKR")
+}
+
+#[test]
+fn like() {
+    assert_eq!(encoding("like").primary, "LK")
+}
+
+#[test]
+fn cabrillo() {
+    assert_eq!(encoding("cabrillo").primary, "KPRL");
+    assert_eq!(encoding("cabrillo").secondary, "KPR");
+}
+
+#[test]
+fn villa() {
+    assert_eq!(encoding("villa").primary, "FL");
+    assert_eq!(encoding("villa").secondary, "F");
+}
+
+#[test]
+fn crevalle() {
+    assert_eq!(encoding("crevalle").primary, "KRFL");
+    assert_eq!(encoding("crevalle").secondary, "KRF");
+}
