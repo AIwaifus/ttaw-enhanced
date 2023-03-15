@@ -701,3 +701,130 @@ fn crevalle() {
     assert_eq!(encoding("crevalle").primary, "KRFL");
     assert_eq!(encoding("crevalle").secondary, "KRF");
 }
+
+#[test]
+fn allegretto() {
+    assert_eq!(encoding("allegretto").primary, "ALKRT");
+    assert_eq!(encoding("allegretto").secondary, "AKRT");
+}
+
+#[test]
+fn allegros() {
+    assert_eq!(encoding("allegros").primary, "ALKRS");
+    assert_eq!(encoding("allegros").secondary, "AKRS");
+}
+
+#[test]
+fn two_lls() {
+    assert_eq!(encoding("ll").primary, "L")
+}
+
+#[test]
+fn one_l() {
+    assert_eq!(encoding("l").primary, "L")
+}
+
+#[test]
+fn thumb() {
+    assert_eq!(encoding("thumb").primary, "0M")
+}
+
+#[test]
+fn dumber() {
+    assert_eq!(encoding("dumber").primary, "TMR")
+}
+
+#[test]
+fn tow_mms() {
+    assert_eq!(encoding("mm").primary, "M")
+}
+
+#[test]
+fn one_m() {
+    assert_eq!(encoding("m").primary, "M")
+}
+
+#[test]
+fn two_nns() {
+    assert_eq!(encoding("nn").primary, "N")
+}
+
+#[test]
+fn one_n() {
+    assert_eq!(encoding("n").primary, "N")
+}
+
+#[test]
+fn top_tilda_n() {
+    assert_eq!(encoding("Ñ").primary, "N")
+}
+
+#[test]
+fn ph() {
+    assert_eq!(encoding("ph").primary, "F")
+}
+
+#[test]
+fn pb() {
+    assert_eq!(encoding("pb").primary, "P")
+}
+
+#[test]
+fn twp_pps() {
+    assert_eq!(encoding("pp").primary, "P")
+}
+
+#[test]
+fn one_p() {
+    assert_eq!(encoding("p").primary, "P")
+}
+
+#[test]
+fn two_qqs() {
+    assert_eq!(encoding("qq").primary, "K")
+}
+
+#[test]
+fn one_q() {
+    assert_eq!(encoding("q").primary, "K")
+}
+
+#[test]
+fn xavier_drop_r() {
+    assert_eq!(encoding("Xavier").primary, "SF");
+    assert_eq!(encoding("Xavier").secondary, "SFR");
+}
+
+#[test]
+fn two_rrs() {
+    assert_eq!(encoding("rr").primary, "R")
+}
+
+#[test]
+fn one_r() {
+    assert_eq!(encoding("r").primary, "R")
+}
+
+#[test]
+fn island() {
+    assert_eq!(encoding("island").primary, "ALNT")
+}
+
+#[test]
+fn sugar() {
+    assert_eq!(encoding("sugar").primary.get(..1), Some("X"));
+    assert_eq!(encoding("sugar").secondary.get(..1), Some("S"));
+}
+
+#[test]
+fn sholz() {
+    assert_eq!(encoding("Sholz").primary.get(..1), Some("S"))
+}
+
+#[test]
+fn sh() {
+    assert_eq!(encoding("sh").primary.get(..1), Some("X"))
+}
+
+#[test]
+fn sio() {
