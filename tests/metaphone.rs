@@ -828,3 +828,133 @@ fn sh() {
 
 #[test]
 fn sio() {
+    assert_eq!(encoding("sio").primary.get(..1), Some("S"));
+    assert_eq!(encoding("sio").secondary.get(..1), Some("X"));
+}
+
+#[test]
+fn sioricz() {
+    assert_eq!(encoding("sioricz").primary, "SRS");
+    assert_eq!(encoding("sioricz").secondary, "SRX");
+}
+
+#[test]
+fn sz() {
+    assert_eq!(encoding("sz").primary, "S");
+    assert_eq!(encoding("sz").secondary, "X");
+}
+
+#[test]
+fn sl() {
+    assert_eq!(encoding("sl").primary, "SL");
+    assert_eq!(encoding("sl").secondary, "XL");
+}
+
+#[test]
+fn schenker() {
+    assert_eq!(encoding("schenker").primary, "XNKR");
+    assert_eq!(encoding("schenker").secondary, "SKNKR");
+}
+
+#[test]
+fn schooner() {
+    assert_eq!(encoding("schooner").primary, "SKNR");
+    assert_eq!(encoding("schooner").secondary, "SKNR");
+}
+
+#[test]
+fn schlepp() {
+    assert_eq!(encoding("schlepp").primary, "XLP");
+    assert_eq!(encoding("schlepp").secondary, "SLP");
+}
+
+#[test]
+fn borscht() {
+    assert_eq!(encoding("borscht").primary, "PRXT")
+}
+
+#[test]
+fn sci() {
+    assert_eq!(encoding("sci").primary, "S")
+}
+
+#[test]
+fn scu() {
+    assert_eq!(encoding("scu").primary, "SK")
+}
+
+#[test]
+fn ois() {
+    assert_eq!(encoding("ois").primary, "A");
+    assert_eq!(encoding("ois").secondary, "AS");
+}
+
+#[test]
+fn two_sss() {
+    assert_eq!(encoding("ss").primary, "S")
+}
+
+#[test]
+fn one_s() {
+    assert_eq!(encoding("s").primary, "S")
+}
+
+#[test]
+fn tion() {
+    assert_eq!(encoding("tion").primary, "XN")
+}
+
+#[test]
+fn tia() {
+    assert_eq!(encoding("tia").primary, "X")
+}
+
+#[test]
+fn tch() {
+    assert_eq!(encoding("tch").primary, "X")
+}
+
+#[test]
+fn thom() {
+    assert_eq!(encoding("thom").primary, "TM")
+}
+
+#[test]
+fn tham() {
+    assert_eq!(encoding("tham").primary, "TM")
+}
+
+#[test]
+fn vongoethals() {
+    assert_eq!(encoding("Von Goethals").primary.get(3..4), Some("T"))
+}
+
+#[test]
+fn vonmatthes() {
+    assert_eq!(encoding("Von Matthes").primary.get(3..4), Some("T"))
+}
+
+#[test]
+fn th() {
+    assert_eq!(encoding("th").primary, "0");
+    assert_eq!(encoding("th").secondary, "T");
+}
+
+#[test]
+fn two_tts() {
+    assert_eq!(encoding("tt").primary, "T")
+}
+
+#[test]
+fn td() {
+    assert_eq!(encoding("td").primary, "T")
+}
+
+#[test]
+fn one_t() {
+    assert_eq!(encoding("t").primary, "T")
+}
+
+#[test]
+fn two_vvs() {
+    assert_eq!(encoding("vv").primary, "F")
