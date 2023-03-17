@@ -958,3 +958,142 @@ fn one_t() {
 #[test]
 fn two_vvs() {
     assert_eq!(encoding("vv").primary, "F")
+}
+
+#[test]
+fn one_v() {
+    assert_eq!(encoding("v").primary, "F")
+}
+
+#[test]
+fn awr() {
+    assert_eq!(encoding("awr").primary, "AR")
+}
+
+#[test]
+fn wa() {
+    assert_eq!(encoding("wa").primary, "A");
+    assert_eq!(encoding("wa").secondary, "F");
+}
+
+#[test]
+fn wh() {
+    assert_eq!(encoding("wh").primary, "A")
+}
+
+#[test]
+fn tsjaikowski() {
+    assert_eq!(encoding("Tsjaikowski").primary, "TSKSK");
+    assert_eq!(encoding("Tsjaikowski").secondary, "TSKFSK");
+}
+
+#[test]
+fn tsjaikowsky() {
+    assert_eq!(encoding("Tsjaikowsky").primary, "TSKSK");
+    assert_eq!(encoding("Tsjaikowsky").secondary, "TSKFSK");
+}
+
+#[test]
+fn schwa() {
+    assert_eq!(encoding("schwa").primary, "X");
+    assert_eq!(encoding("schwa").secondary, "XF");
+}
+
+#[test]
+fn arnow() {
+    assert_eq!(encoding("Arnow").primary, "ARN");
+    assert_eq!(encoding("Arnow").secondary, "ARNF");
+}
+
+#[test]
+fn filipowicz() {
+    assert_eq!(encoding("Filipowicz").primary, "FLPTS");
+    assert_eq!(encoding("Filipowicz").secondary, "FLPFX");
+}
+
+#[test]
+fn filipowitz() {
+    assert_eq!(encoding("Filipowitz").primary, "FLPTS");
+    assert_eq!(encoding("Filipowitz").secondary, "FLPFX");
+}
+
+#[test]
+fn w() {
+    assert_eq!(encoding("w").primary, "")
+}
+
+#[test]
+fn matrix() {
+    assert_eq!(encoding("matrix").primary, "MTRKS")
+}
+
+#[test]
+fn iauxa() {
+    assert_eq!(encoding("iauxa").primary, "AKS")
+}
+
+#[test]
+fn eauxa() {
+    assert_eq!(encoding("eauxa").primary, "AKS")
+}
+
+#[test]
+fn auxa() {
+    assert_eq!(encoding("auxa").primary, "AKS")
+}
+
+#[test]
+fn ouxa() {
+    assert_eq!(encoding("ouxa").primary, "AKS")
+}
+
+#[test]
+fn aux() {
+    assert_eq!(encoding("AUX").primary, "A")
+}
+
+#[test]
+fn oux() {
+    assert_eq!(encoding("OUX").primary, "A")
+}
+
+#[test]
+fn breaux() {
+    assert_eq!(encoding("breaux").primary, "PR")
+}
+
+#[test]
+fn axc() {
+    assert_eq!(encoding("AXC").primary, "AKS")
+}
+
+#[test]
+fn axx() {
+    assert_eq!(encoding("axx").primary, "AKS")
+}
+
+#[test]
+fn axe() {
+    assert_eq!(encoding("axe").primary, "AKS")
+}
+
+#[test]
+fn zhao() {
+    assert_eq!(encoding("zhao").primary, "J")
+}
+
+#[test]
+fn zza() {
+    assert_eq!(encoding("zza").primary, "S");
+    assert_eq!(encoding("zza").secondary, "TS");
+}
+
+#[test]
+fn zzi() {
+    assert_eq!(encoding("zzi").primary, "S");
+    assert_eq!(encoding("zzi").secondary, "TS");
+}
+
+#[test]
+fn zzo() {
+    assert_eq!(encoding("zzo").primary, "S");
