@@ -1097,3 +1097,39 @@ fn zzi() {
 #[test]
 fn zzo() {
     assert_eq!(encoding("zzo").primary, "S");
+    assert_eq!(encoding("zzo").secondary, "TS");
+}
+
+#[test]
+fn mazurkiewicz() {
+    assert_eq!(encoding("Mazurkiewicz").primary, "MSRKTS");
+    assert_eq!(encoding("Mazurkiewicz").secondary, "MTSRKFX");
+}
+
+#[test]
+fn two_zzs() {
+    assert_eq!(encoding("zz").primary, "S")
+}
+
+#[test]
+fn one_z() {
+    assert_eq!(encoding("z").primary, "S");
+}
+
+#[test]
+fn michael_full() {
+    assert_eq!(encoding("michael").primary, "MKL");
+    assert_eq!(encoding("michael").secondary, "MXL");
+}
+
+#[test]
+fn detestable() {
+    assert_eq!(encoding("detestable").primary, "TTSTPL");
+    assert_eq!(encoding("detestable").secondary, "TTSTPL");
+}
+
+#[test]
+fn vileness() {
+    assert_eq!(encoding("vileness").primary, "FLNS");
+    assert_eq!(encoding("vileness").secondary, "FLNS");
+}
