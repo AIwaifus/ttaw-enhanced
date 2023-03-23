@@ -2,4 +2,7 @@
 [![codecov](https://codecov.io/gh/AIwaifus/ttaw-enhanced/branch/main/graph/badge.svg?token=7I6VUOOLC2)](https://codecov.io/gh/AIwaifus/ttaw-enhanced)
 [![Crates.io Version](https://img.shields.io/crates/v/ttaw-enhanced.svg)](https://crates.io/crates/ttaw-enhanced)
 [![Crates.io](https://img.shields.io/crates/d/ttaw-enhanced.svg)](https://crates.io/crates/ttaw-enhanced)
-[![LICENSE](https://img.shields.io/badge/license-MIT-blu
+[![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+# ttaw-enhanced
+Talking to A Wall - An enhanced natural language processing library offering a modular and f
