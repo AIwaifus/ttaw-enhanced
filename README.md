@@ -5,4 +5,8 @@
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 # ttaw-enhanced
-Talking to A Wall - An enhanced natural language processing library offering a modular and f
+Talking to A Wall - An enhanced natural language processing library offering a modular and flexible approach.
+
+## Functionality
+- Determine if two words rhyme using the Double Metaphone phonetic encoding
+- Det
