@@ -11,4 +11,8 @@ Talking to A Wall - An enhanced natural language processing library offering a m
 - Determine if two words rhyme using the Double Metaphone phonetic encoding
 - Determine if two words rhyme using CMUdict phonetic encoding
 
-- Determine if two words alliterate using the Double Metaphone phonetic enco
+- Determine if two words alliterate using the Double Metaphone phonetic encoding
+- Determine if two words alliterate using CMUdict phonetic encoding
+
+- Get the CMUdict phonetic encoding of a word
+- Get th
