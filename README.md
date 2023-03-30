@@ -18,4 +18,9 @@ Talking to A Wall - An enhanced natural language processing library offering a m
 - Get the Double Metaphone phonetic encoding of a word (port of [words/double-metahone](https://github.com/words/double-metaphone) library)
 
 ## Rhyme
-```
+```rust
+extern crate ttaw-enhanced;
+use ttaw-enhanced;
+
+// Initialize the CmuDict with a path to the existing serialized CMU dictionary
+// or a d
