@@ -27,4 +27,7 @@ use ttaw-enhanced;
 // downloaded and serialized at the location specified by the path parameter.
 let cmudict = ttaw-enhanced::cmu::CmuDict::new("cmudict.json").unwrap();
 
-assert_eq!(Ok(true), cmudict.rhym
+assert_eq!(Ok(true), cmudict.rhyme("far", "tar"));
+assert_eq!(Ok(true), ttaw-enhanced::metaphone::rhyme("far", "tar"));
+
+assert_eq!(Ok(false), cmudict.rhyme("shopping", "
