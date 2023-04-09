@@ -35,4 +35,12 @@ assert_eq!(Ok(false), ttaw-enhanced::metaphone::rhyme("shopping", "cart"));
 
 // Deviations in cmu and metaphone
 assert_eq!(true, ttaw-enhanced::metaphone::rhyme("hear", "near"));
-assert_eq!(Ok(false), cmudict.rhyme("hear", "near"
+assert_eq!(Ok(false), cmudict.rhyme("hear", "near"));
+```
+
+## Alliteration
+```rust
+extern crate ttaw-enhanced;
+use ttaw-enhanced;
+
+// Initialize the CmuDict with a pa
