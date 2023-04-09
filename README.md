@@ -33,4 +33,6 @@ assert_eq!(Ok(true), ttaw-enhanced::metaphone::rhyme("far", "tar"));
 assert_eq!(Ok(false), cmudict.rhyme("shopping", "cart"));
 assert_eq!(Ok(false), ttaw-enhanced::metaphone::rhyme("shopping", "cart"));
 
-// Deviations in cmu and me
+// Deviations in cmu and metaphone
+assert_eq!(true, ttaw-enhanced::metaphone::rhyme("hear", "near"));
+assert_eq!(Ok(false), cmudict.rhyme("hear", "near"
