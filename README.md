@@ -30,4 +30,7 @@ let cmudict = ttaw-enhanced::cmu::CmuDict::new("cmudict.json").unwrap();
 assert_eq!(Ok(true), cmudict.rhyme("far", "tar"));
 assert_eq!(Ok(true), ttaw-enhanced::metaphone::rhyme("far", "tar"));
 
-assert_eq!(Ok(false), cmudict.rhyme("shopping", "
+assert_eq!(Ok(false), cmudict.rhyme("shopping", "cart"));
+assert_eq!(Ok(false), ttaw-enhanced::metaphone::rhyme("shopping", "cart"));
+
+// Deviations in cmu and me
