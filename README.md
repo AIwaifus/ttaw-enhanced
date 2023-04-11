@@ -43,4 +43,5 @@ assert_eq!(Ok(false), cmudict.rhyme("hear", "near"));
 extern crate ttaw-enhanced;
 use ttaw-enhanced;
 
-// Initialize the CmuDict with a pa
+// Initialize the CmuDict with a path to the existing serialized CMU dictionary
+// or a directory containing it. If the dictionary doesn't exist, it will be
