@@ -67,4 +67,15 @@ use ttaw-enhanced;
 let cmudict = ttaw-enhanced::cmu::CmuDict::new("cmudict.json").unwrap();
 
 assert_eq!(
-cmudict.encoding(("unearthed
+cmudict.encoding(("unearthed"),
+Ok(Some(vec![vec[
+"AH0".to_string(),
+"N".to_string(),
+"ER1".to_string(),
+"TH".to_string(),
+"T".to_string()
+]]))
+);
+```
+
+## 
