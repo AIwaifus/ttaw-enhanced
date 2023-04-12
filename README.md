@@ -58,4 +58,8 @@ assert_eq!(false, ttaw-enhanced::metaphone::alliteration("lazy", "dog"));
 
 ## CMUdict
 ```rust
-extern crate ttaw-enhanced
+extern crate ttaw-enhanced;
+use ttaw-enhanced;
+
+// Initialize the CmuDict with a path to the existing serialized CMU dictionary
+// or a directory cont
