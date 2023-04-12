@@ -51,4 +51,11 @@ let cmudict = ttaw-enhanced::cmu::CmuDict::new("cmudict.json").unwrap();
 assert_eq!(Ok(true), cmudict.alliteration("bounding","bears"));
 assert_eq!(true, ttaw-enhanced::metaphone::alliteration("bounding","bears"));
 
-assert_eq!(Ok(false), cmudict.alliteration("lazy", "dog")
+assert_eq!(Ok(false), cmudict.alliteration("lazy", "dog"));
+assert_eq!(false, ttaw-enhanced::metaphone::alliteration("lazy", "dog"));
+```
+
+
+## CMUdict
+```rust
+extern crate ttaw-enhanced
