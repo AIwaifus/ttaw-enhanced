@@ -46,4 +46,7 @@ use ttaw-enhanced;
 // Initialize the CmuDict with a path to the existing serialized CMU dictionary
 // or a directory containing it. If the dictionary doesn't exist, it will be
 // downloaded and serialized at the location specified by the path parameter.
-let cmudict = ttaw-enhanced::cmu::CmuDict::new
+let cmudict = ttaw-enhanced::cmu::CmuDict::new("cmudict.json").unwrap();
+
+assert_eq!(Ok(true), cmudict.alliteration("bounding","bears"));
+assert_eq!(tr
