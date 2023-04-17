@@ -87,4 +87,11 @@ assert_eq!(ttaw-enhanced::metaphone::encoding("Arnow").primary, "ARN");
 assert_eq!(ttaw-enhanced::metaphone::encoding("Arnow").secondary, "ARNF");
 
 assert_eq!(
-ttaw-enhanced::metaphone::encoding
+ttaw-enhanced::metaphone::encoding("detestable").primary,
+"TTSTPL"
+);
+assert_eq!(
+ttaw-enhanced::metaphone::encoding("detestable").secondary,
+"TTSTPL"
+);
+```
