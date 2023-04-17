@@ -78,4 +78,9 @@ Ok(Some(vec![vec[
 );
 ```
 
-## 
+## Double Metaphone
+```rust
+extern crate ttaw-enhanced;
+use ttaw-enhanced;
+
+assert_eq!(ttaw-enhanced::metaphone::encoding("Arnow").primary, "ARN"
