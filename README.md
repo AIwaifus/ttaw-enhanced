@@ -83,4 +83,8 @@ Ok(Some(vec![vec[
 extern crate ttaw-enhanced;
 use ttaw-enhanced;
 
-assert_eq!(ttaw-enhanced::metaphone::encoding("Arnow").primary, "ARN"
+assert_eq!(ttaw-enhanced::metaphone::encoding("Arnow").primary, "ARN");
+assert_eq!(ttaw-enhanced::metaphone::encoding("Arnow").secondary, "ARNF");
+
+assert_eq!(
+ttaw-enhanced::metaphone::encoding
